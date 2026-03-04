@@ -1,0 +1,36 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+publish_mode: editorial_workflow
+
+collections:
+  - name: "site"
+    label: "Содржина"
+    files:
+      - file: "data/site.json"
+        label: "Услуги + Галерија"
+        name: "site_data"
+        fields:
+          - label: "Услуги"
+            name: "services"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.price}}"
+            fields:
+              - { label: "Име", name: "name", widget: "string" }
+              - { label: "Опис", name: "desc", widget: "text" }
+              - { label: "Цена (пример: 500 ден.)", name: "price", widget: "string", required: false }
+          - label: "Забелешка под услугите"
+            name: "service_note"
+            widget: "text"
+            required: false
+          - label: "Галерија (слики / редослед)"
+            name: "gallery"
+            widget: "list"
+            summary: "{{fields.image}}"
+            fields:
+              - { label: "Слика", name: "image", widget: "image" }
+              - { label: "Alt текст (опционално)", name: "alt", widget: "string", required: false }
