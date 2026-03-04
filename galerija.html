@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+
+<html lang="mk">
+<head>
+<meta charset="utf-8"/>
+<title>Галерија - Nails by Hristina</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Галерија со нокти и дизајни од Nails by Hristina - Штип." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            --primary: #f06292;
+            --primary-light: #f8bbd0;
+            --bg-light: #fff5fb;
+            --text-main: #333333;
+            --card-bg: rgba(255, 255, 255, 0.96);
+        }
+
+        * { box-sizing: border-box; }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: #ffffff;
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+                url("pozadina1.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* NAVBAR – ист како index.html */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            background: rgba(30, 13, 18, 0.40);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 1.15rem;
+            white-space: nowrap;
+        }
+
+        .brand span {
+            color: #ffffff;
+        }
+
+        .brand-mark {
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 30%, #f8bbd0 0, #f48fb1 45%, #f06292 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 0 0 3px rgba(0,0,0,0.35);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+            border: 2px solid rgba(255,255,255,0.7);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            font-size: 1.05rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #fdfdfd;
+            opacity: 0.9;
+            padding: 6px 14px;
+            border-radius: 999px;
+            transition: background 0.2s ease, opacity 0.15s ease, transform 0.15s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            background: rgba(255,255,255,0.14);
+            transform: translateY(-1px);
+        }
+
+        /* HAMBURGER копче – исто како на index.html */
+        .nav-toggle {
+            display: none;
+            background: rgba(0,0,0,0.55);
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.7);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            margin-left: 12px;
+            box-shadow: 0 0 6px rgba(0,0,0,0.35);
+            position: relative;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 3px;
+            border-radius: 999px;
+            background: #ffffff;
+            margin: 3px 0;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        /* кога е отворено – правиме X на средина во кругчето */
+        .nav-toggle.open span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: 0;
+            width: 24px;
+        }
+
+        .nav-toggle.open span:nth-child(1) {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+        .nav-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .nav-toggle.open span:nth-child(3) {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        /* ГЛАВЕН КОНТЕЈНЕР */
+        .wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px 16px 50px 16px;
+            flex: 1;
+            width: 100%;
+        }
+
+        .page-header {
+            padding: 16px 0 8px;
+            text-align: left;
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 3.4vw, 2.4rem);
+            font-weight: 600;
+            margin: 0 0 6px 0;
+        }
+
+        .hero-text {
+            font-size: 0.95rem;
+            max-width: 620px;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        /* ГАЛЕРИЈА: 3 СЛИКИ ВО РЕД */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .gallery-item {
+            border-radius: 18px;
+            min-height: 260px;
+            background: linear-gradient(135deg, #ffe3f4, #f8bbd0);
+            overflow: hidden;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+
+            /* за кликање + модерно чувство */
+            border: 0;
+            padding: 0;
+            width: 100%;
+            cursor: zoom-in;
+            text-align: inherit;
+            position: relative;
+            isolation: isolate;
+        }
+
+        .gallery-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transform: scale(1);
+            transition: transform 0.25s ease;
+            user-select: none;
+        }
+
+        .gallery-item:hover .gallery-photo {
+            transform: scale(1.04);
+        }
+
+        .gallery-item:focus-visible {
+            outline: 2px solid rgba(248,187,208,0.95);
+            outline-offset: 4px;
+        }
+
+        /* „shine“ overlay */
+        .gallery-item::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg,
+                rgba(255,255,255,0.0) 0%,
+                rgba(255,255,255,0.14) 35%,
+                rgba(255,255,255,0.0) 60%);
+            transform: translateX(-80%);
+            transition: transform 0.55s ease;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .gallery-item:hover::before {
+            transform: translateX(40%);
+        }
+
+        /* ТВОЈ „таен“ редослед (само кога ќе ставиш class="debug" на body) */
+        body.debug .gallery-item::after {
+            content: attr(data-order);
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 30px;
+            height: 30px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #1f0d12;
+            background: rgba(248,187,208,0.95);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+            z-index: 3;
+        }
+
+        /* reveal анимација (само кога има JS) */
+        html.js .gallery-item {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+        html.js .gallery-item.in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* LIGHTBOX (модерно отворање на слики) */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.86);
+            z-index: 999;
+            padding: 20px;
+        }
+
+        .lightbox.open {
+            display: flex;
+            animation: lbFade 0.18s ease;
+        }
+
+        @keyframes lbFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .lb-stage {
+            position: relative;
+            width: min(980px, 96vw);
+            height: min(720px, 86vh);
+            display: grid;
+            place-items: center;
+        }
+
+        .lb-img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 16px;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+            animation: lbPop 0.16s ease;
+        }
+
+        @keyframes lbPop {
+            from { transform: scale(0.98); opacity: 0.7; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .lb-btn {
+            position: absolute;
+            top: 16px;
+            width: 42px;
+            height: 42px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.55);
+            background: rgba(0,0,0,0.55);
+            color: #fff;
+            font-size: 22px;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            transition: transform 0.15s ease, background 0.15s ease;
+        }
+
+        .lb-btn:hover { transform: translateY(-1px); background: rgba(0,0,0,0.7); }
+
+        .lb-close { right: 16px; }
+
+        .lb-prev, .lb-next {
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 26px;
+        }
+        .lb-prev { left: 16px; }
+        .lb-next { right: 16px; }
+
+        .lb-counter {
+            position: absolute;
+            bottom: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(0,0,0,0.55);
+            border: 1px solid rgba(255,255,255,0.3);
+            font-size: 0.92rem;
+            color: rgba(255,255,255,0.92);
+            user-select: none;
+        }
+
+        @media (max-width: 520px) {
+            .lb-prev, .lb-next { display: none; } /* на телефон swipe е доволен */
+            .lb-stage {
+                width: 96vw;
+                height: 82vh;
+            }
+        }
+
+        a { color: var(--primary); }
+        a:hover { text-decoration: underline; }
+
+        footer {
+            padding: 18px 16px 30px 16px;
+            text-align: center;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .gallery {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 780px) {
+            body {
+                background-attachment: scroll;
+            }
+
+            .nav-inner {
+                padding: 10px 16px;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: calc(100% + 8px);
+                left: 16px;
+                right: 16px;
+                background: rgba(30,13,18,0.92);
+                border-radius: 18px;
+                padding: 12px 0;
+                flex-direction: column;
+                gap: 4px;
+                box-shadow: 0 18px 32px rgba(0,0,0,0.35);
+                display: none;
+                align-items: flex-start;
+            }
+
+            .nav-links.open { display: flex; }
+
+            .nav-links a {
+                width: 100%;
+                text-align: left;
+                padding: 10px 20px;
+                border-radius: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .brand {
+                font-size: 1rem;
+            }
+            .gallery {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="navbar">
+<div class="nav-inner">
+<div class="brand">
+<div class="brand-mark">NH</div>
+<span>Nails by Hristina</span>
+</div>
+<!-- hamburger како на index.html -->
+<button aria-label="Отвори мени" class="nav-toggle">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<nav class="nav-links">
+<a href="index.html">Почетна</a>
+<a href="uslugi.html">Услуги</a>
+<a href="galerija.html">Галерија</a>
+<a href="kontakt.html">Контакт</a>
+</nav>
+</div>
+</header>
+<div class="wrapper">
+<section class="page-header">
+<h1 class="hero-title">Галерија</h1>
+<p class="hero-text">
+            Избрани сетови од мојата работа – од нежни, минималистички нокти до поизразени glam дизајни. 💕
+        </p>
+</section>
+<section class="gallery" id="gallery-grid"></section>
+</div>
+<!-- LIGHTBOX overlay -->
+<div aria-hidden="true" class="lightbox" id="lightbox">
+<div aria-label="Преглед на слика" class="lb-stage" role="dialog">
+<button aria-label="Затвори" class="lb-btn lb-close" type="button">✕</button>
+<button aria-label="Претходна" class="lb-btn lb-prev" type="button">‹</button>
+<img alt="" class="lb-img" id="lbImg" src=""/>
+<button aria-label="Следна" class="lb-btn lb-next" type="button">›</button>
+<div aria-live="polite" class="lb-counter">
+<span id="lbCurrent">1</span> / <span id="lbTotal">18</span>
+</div>
+</div>
+</div>
+<footer>
+    © 2025 Nails by Hristina – сите права задржани.
+</footer>
+<script src="content-loader.js"></script><script>
+    // Означи дека има JS (за reveal анимацијата)
+    document.documentElement.classList.add('js');
+
+    // NAVBAR hamburger
+    const toggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    toggle.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+        toggle.classList.toggle('open');
+    });
+
+    function initGallery() {
+// --- LIGHTBOX ---
+    const items = Array.from(document.querySelectorAll('.gallery-item'));
+
+    if (!items.length) return; // уште не е рендерирано
+    if (window.__galleryInited) return;
+    window.__galleryInited = true;
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbCurrent = document.getElementById('lbCurrent');
+    const lbTotal = document.getElementById('lbTotal');
+    const btnClose = lightbox.querySelector('.lb-close');
+    const btnPrev = lightbox.querySelector('.lb-prev');
+    const btnNext = lightbox.querySelector('.lb-next');
+
+    lbTotal.textContent = String(items.length);
+    let currentIndex = 0;
+    let previousOverflow = '';
+
+    function show(index) {
+        if (!items.length) return;
+        currentIndex = (index + items.length) % items.length;
+        const src = items[currentIndex].dataset.src;
+        lbImg.src = src;
+        lbImg.alt = items[currentIndex].querySelector('img')?.alt || '';
+        lbCurrent.textContent = String(currentIndex + 1);
+    }
+
+    function openLightbox(index) {
+        previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        show(index);
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        lbImg.src = '';
+        document.body.style.overflow = previousOverflow;
+    }
+
+    items.forEach((btn, i) => {
+        btn.addEventListener('click', () => openLightbox(i));
+    });
+
+    btnClose.addEventListener('click', closeLightbox);
+    btnPrev.addEventListener('click', () => show(currentIndex - 1));
+    btnNext.addEventListener('click', () => show(currentIndex + 1));
+
+    // клик надвор од сликата = затвори
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    // тастатура (лаптоп)
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') show(currentIndex - 1);
+        if (e.key === 'ArrowRight') show(currentIndex + 1);
+    });
+
+    // swipe (телефон)
+    let touchStartX = 0;
+    let touchStartY = 0;
+    lightbox.addEventListener('touchstart', (e) => {
+        const t = e.touches[0];
+        touchStartX = t.clientX;
+        touchStartY = t.clientY;
+    }, { passive: true });
+    lightbox.addEventListener('touchend', (e) => {
+        if (!lightbox.classList.contains('open')) return;
+        const t = e.changedTouches[0];
+        const dx = t.clientX - touchStartX;
+        const dy = t.clientY - touchStartY;
+        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+            if (dx < 0) show(currentIndex + 1);
+            else show(currentIndex - 1);
+        }
+    }, { passive: true });
+
+    // --- Reveal анимација на скрол ---
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in');
+                io.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.08 });
+    items.forEach((el) => io.observe(el));
+
+    // „таен“ редослед: додај ?debug=1 во URL (пример: galerija.html?debug=1)
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('debug') === '1') {
+        document.body.classList.add('debug');
+    }
+
+}
+
+// иницијализација после рендер од CMS
+window.addEventListener('gallery:rendered', initGallery);
+initGallery();
+</script>
+</body>
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+    <meta charset="UTF-8">
+    <title>Nails by Hristina</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Nails by Hristina - модерно студио за маникир, гел нокти и надградба во Штип. Резервации на телефон или Instagram.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #f06292;
+            --primary-light: #f8bbd0;
+            --bg-light: #fff5fb;
+            --text-main: #333333;
+            --card-bg: rgba(255, 255, 255, 0.96);
+        }
+
+        * { box-sizing: border-box; }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: #ffffff;
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+                url("pozadina1.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            background: rgba(30, 13, 18, 0.40);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 1.15rem;
+            white-space: nowrap;
+        }
+
+        .brand span {
+            color: #ffffff;
+        }
+
+        .brand-mark {
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 30%, #f8bbd0 0, #f48fb1 45%, #f06292 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 0 0 3px rgba(0,0,0,0.35);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+            border: 2px solid rgba(255,255,255,0.7);
+        }
+
+        /* десен дел: линкови – desktop */
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            font-size: 1.05rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #fdfdfd;
+            opacity: 0.9;
+            padding: 6px 14px;
+            border-radius: 999px;
+            transition: background 0.2s ease, opacity 0.15s ease, transform 0.15s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            background: rgba(255,255,255,0.14);
+            transform: translateY(-1px);
+        }
+
+        /* HAMBURGER копче (се гледа само на телефон) */
+        .nav-toggle {
+    display: none;
+    background: rgba(0,0,0,0.55);
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.7);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin-left: 12px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.35);
+    position: relative;        /* ДОДАДЕНО */
+}
+
+        .nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 3px;
+    border-radius: 999px;
+    background: #ffffff;
+    margin: 3px 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* кога е отворено – правиме X на средина во кругчето */
+.nav-toggle.open span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;              /* да не го поместува дополнително */
+    width: 24px;            /* малку помал X, да собира убаво */
+}
+
+.nav-toggle.open span:nth-child(1) {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+.nav-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+.nav-toggle.open span:nth-child(3) {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+        /* ГЛАВЕН КОНТЕЈНЕР */
+        .wrapper {
+            flex: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 16px 40px 16px;
+            width: 100%;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            align-items: center;
+            gap: 26px;
+            padding: 30px 0 20px 0;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.9);
+            border: 1px solid rgba(240,98,146,0.25);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--text-main);
+        }
+
+        .badge span { font-size: 1rem; }
+
+        .hero-title {
+            font-size: clamp(2.1rem, 4vw, 2.7rem);
+            font-weight: 600;
+            margin: 14px 0 8px 0;
+        }
+
+        .hero-title span { color: var(--primary); }
+
+        .hero-text {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            max-width: 480px;
+        }
+
+        .hero-actions {
+            margin-top: 16px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn-primary,
+        .btn-ghost {
+            border-radius: 999px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: #fff;
+            box-shadow: 0 10px 26px rgba(0,0,0,0.22);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 30px rgba(0,0,0,0.25);
+        }
+
+        .btn-ghost {
+            background: rgba(255,255,255,0.85);
+            border: 1px solid rgba(240,98,146,0.25);
+            color: var(--primary);
+        }
+
+        .hero-note {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-circle {
+            width: min(340px, 80vw);
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            position: relative;
+            background:
+                radial-gradient(circle at 20% 10%, #ffffff 0, #ffe4f1 40%, #f48fb1 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 22px 40px rgba(0,0,0,0.26);
+        }
+
+        .hero-circle::after {
+            content: "";
+            position: absolute;
+            inset: 8%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 20% 0, rgba(255,255,255,0.85), transparent 65%);
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+
+        .hero-image {
+            width: 95%;
+            height: 95%;
+            border-radius: 50%;
+            background-position: center;
+            background-size: cover;
+            background-image: url("logo.jpg");
+        }
+
+        a { color: var(--primary); }
+        a:hover { text-decoration: underline; }
+
+        footer {
+            padding: 18px 16px 30px 16px;
+            text-align: center;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        /* МАЛИ ЕКРАНИ (телефон) */
+        @media (max-width: 780px) {
+            body { background-attachment: scroll; }
+
+            .hero {
+                grid-template-columns: minmax(0, 1fr);
+                padding-top: 18px;
+            }
+
+            .hero-visual { order: -1; }
+
+            .nav-inner { padding: 10px 16px; }
+
+            .nav-toggle {
+                display: inline-flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: calc(100% + 8px);
+                left: 16px;
+                right: 16px;
+                background: rgba(30,13,18,0.92);
+                border-radius: 18px;
+                padding: 12px 0;
+                flex-direction: column;
+                gap: 4px;
+                box-shadow: 0 18px 32px rgba(0,0,0,0.35);
+                display: none;
+                align-items: flex-start;
+            }
+
+            .nav-links.open { display: flex; }
+
+            .nav-links a {
+                width: 100%;
+                text-align: left;
+                padding: 10px 20px;
+                border-radius: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .brand { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="navbar">
+    <div class="nav-inner">
+        <div class="brand">
+            <div class="brand-mark">NH</div>
+            <span>Nails by Hristina</span>
+        </div>
+
+        <button class="nav-toggle" aria-label="Отвори мени">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="nav-links">
+            <a href="index.html">Почетна</a>
+            <a href="uslugi.html">Услуги</a>
+            <a href="galerija.html">Галерија</a>
+            <a href="kontakt.html">Контакт</a>
+        </nav>
+    </div>
+</header>
+
+<div class="wrapper">
+    <section class="hero">
+        <div>
+            <div class="badge">
+                <span>💅</span> Нежни бои · модерен дизајн
+            </div>
+            <h1 class="hero-title">
+                Нокти што <span>зборуваат</span> за тебе.
+            </h1>
+            <p class="hero-text">
+                Добредојде во <strong>Nails by Hristina</strong> – местото каде што твоите нокти добиваат персонализиран изглед, од чист минимализам до целосен glam момент.
+            </p>
+            <div class="hero-actions">
+                <a class="btn-primary" href="kontakt.html">
+                    Резервирај термин
+                </a>
+                <a class="btn-ghost" href="uslugi.html">Погледни ги услугите</a>
+            </div>
+            <p class="hero-note">
+                ✨ Работиме со квалитетни материјали и стерилни алати. Локација: с. Таринци, Штип.
+            </p>
+        </div>
+
+        <div class="hero-visual">
+            <div class="hero-circle">
+                <div class="hero-image"></div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer>
+    © 2025 Nails by Hristina – сите права задржани.
+</footer>
+
+<script>
+    const toggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    toggle.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+        toggle.classList.toggle('open');
+    });
+</script>
+
+</body>
+</html>
